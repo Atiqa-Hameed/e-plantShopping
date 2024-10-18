@@ -41,28 +41,23 @@
   }
   
   .content {
-    display: flex; /* Change to flex to align items horizontally */
-    align-items: center; /* Center items vertically */
-    justify-content: center; /* Center items horizontally */
+    display: flex;
+    align-items: center;
+    justify-content: center;
     height: 100vh;
     width: 100vw;
     backdrop-filter: blur(4px);
     background-color: rgba(0, 0, 0, 0.5);
     z-index: 1; /* Above background */
-    padding: 20px; /* Add padding for spacing */
+    padding: 20px;
   }
+  
   .landing_content {
     text-align: center;
     z-index: 1;
-    width: 500px; /* Increase width for the landing content */
-    margin-right: 20px; /* Space between components */
+    width: 500px;
+    margin-right: 20px;
   }
-  
-  /* Other styles remain unchanged */
-  
-  
-  /* Other styles remain unchanged */
-  
   
   .content h1,
   .content p {
@@ -70,31 +65,31 @@
   }
   
   .content h1 {
-    font-size: 2.5rem; /* Responsive font size */
+    font-size: 2.5rem;
     margin-bottom: 10px;
   }
   
   .content p {
-    font-size: 1.25rem; /* Responsive font size */
+    font-size: 1.25rem;
   }
   
   .divider {
     width: 50px;
     height: 2px;
     background-color: #4caf50;
-    margin: 10px auto; /* Center divider */
+    margin: 10px auto;
   }
   
   .get-started-button {
     padding: 15px 25px;
-    font-size: 1.25rem; /* Responsive font size */
+    font-size: 1.25rem;
     border: none;
     border-radius: 5px;
     background-color: #4caf50;
     color: white;
     cursor: pointer;
     transition: background-color 0.3s ease;
-    margin-top: 20px; /* Adjusted margin */
+    margin-top: 20px;
   }
   
   .get-started-button:hover {
@@ -124,27 +119,49 @@
     .content {
       flex-direction: column;
       align-items: center;
+      padding: 10px;
     }
   
     .landing_content {
-      margin-top: 100px; /* Adjust as needed */
-      width: 90%; /* Responsive width */
+      width: 90%;
+      margin: 20px 0;
     }
   
-    .aboutus_container {
-      margin-top: 20px; /* Adjust as needed */
-      width: 90%; /* Responsive width */
+    .get-started-button {
+      width: auto;
+      font-size: 1.1rem;
+    }
+  
+    .content h1 {
+      font-size: 2rem;
+    }
+  
+    .content p {
+      font-size: 1rem;
     }
   }
   
   @media screen and (max-width: 480px) {
-    .landing_content {
-      margin-top: 50px; /* Adjust as needed */
-      width: 90%; /* Responsive width */
+    .content {
+      padding: 5px;
     }
   
-    .aboutus_container {
-      width: 90%; /* Responsive width */
+    .landing_content {
+      width: 100%;
+      margin-top: 10px;
+    }
+  
+    .content h1 {
+      font-size: 1.8rem;
+    }
+  
+    .content p {
+      font-size: 0.9rem;
+    }
+  
+    .get-started-button {
+      font-size: 1rem;
+      padding: 10px 20px;
     }
   }
   

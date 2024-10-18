@@ -188,6 +188,23 @@ body {
 
     
 }
+.category-title {
+  display: flex;
+  justify-content: center; /* Center horizontally */
+  align-items: center; /* Center vertically */
+  margin: 0; /* Remove default margin */
+  padding-top: 30px;
+  padding-bottom: 10px;
+
+}
+
+.category-title div {
+  font-size: 2rem; /* Font size */
+  font-weight: bold; /* Bold text */
+  color: black; /* Dark gray color */
+  text-align: center; /* Center text within the div */
+}
+
 /* Add Media Query for responsiveness */
 @media (max-width: 768px) {
     .product-card {
