@@ -232,7 +232,7 @@ function ProductList() {
         display: 'flex',
         justifyContent: 'space-between',
         alignIems: 'center',
-        fontSize: '20px',
+        fontSize: '30px',
 
     }
     const styleObjUl = {
@@ -242,16 +242,11 @@ function ProductList() {
         width: '1100px',
     }
     const styleA = {
-        color: 'white',
+        color: 'black',
         fontSize: '30px',
         textDecoration: 'none',
-        display: 'flex',             // Use Flexbox layout
-        flexDirection: 'column',      // Stack children vertically
-        alignItems: 'center',        // Center children horizontally
-        justifyContent: 'center',    // Center children vertically
-        height: '100vh',             // Full viewport height
-        textAlign: 'center',         // Center text alignment
-        backgroundColor: '#282c34' 
+    
+    
     }
     const handleCartClick = (e) => {
         e.preventDefault();
@@ -284,7 +279,29 @@ function ProductList() {
 
                 </div>
                 <div style={styleObjUl}>
-                    <div> <a href="#" onClick={(e) => handlePlantsClick(e)} style={styleA}>Plants</a></div>
+                <div style={{ 
+    flex: 1,                // Allow the div to take equal space in the flex container
+    display: 'flex',        // Use flexbox for centering
+    justifyContent: 'center',// Center the content horizontally
+    alignItems: 'center',   // Center the content vertically
+    padding: '10px',        // Add padding around the link
+
+}}>
+    <a 
+        href="#" 
+        onClick={(e) => handlePlantsClick(e)} 
+        style={{
+            fontSize: '30px', // Increase font size for better visibility
+            color: 'white',    // Change the text color to white for contrast
+            textDecoration: 'none', // Remove underline from the link
+
+        }}
+        
+    >
+        Plants
+    </a>
+</div>
+
                     <div>
                         <a href="#" onClick={(e) => handleCartClick(e)} style={styleA}>
                             <h1 className='cart flex items-center justify-center' style={{ position: 'relative' }}>
