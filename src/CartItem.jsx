@@ -3,50 +3,47 @@ import { useSelector, useDispatch } from 'react-redux';
 import { removeItem, updateQuantity } from './CartSlice';
 import './CartItem.css';
 
-const CartItem = ({ onContinueShopping }) => {
+const CartItem = ({ onContinueShopping, onCartItemChange}) => {
   const cart = useSelector(state => state.cart.items);
   const dispatch = useDispatch();
 
-  // Calculate total amount for all products in the cart
   const calculateTotalAmount = () => {
     return cart.reduce((total, item) => {
-      const itemCost = parseFloat(item.cost.replace('$', '')); // Remove the dollar sign and convert to float
-      return total + (itemCost * item.quantity); // Multiply cost by quantity and add to total
-    }, 0); // Start reducing with an initial total of 0
-  };
-
-  const handleContinueShopping = (e) => {
-    e.preventDefault(); // Prevent default form submission behavior
-    onContinueShopping(); // Call the function passed from the parent component
+      const itemCost = parseFloat(item.cost.replace('$', ''));
+      return total + (itemCost * item.quantity);
+    }, 0);
   };
 
   const handleIncrement = (item) => {
     dispatch(updateQuantity({ name: item.name, quantity: item.quantity + 1 }));
+    onCartItemChange(1); // Increase total items by 1
   };
 
   const handleDecrement = (item) => {
     if (item.quantity > 1) {
       dispatch(updateQuantity({ name: item.name, quantity: item.quantity - 1 }));
+      onCartItemChange(-1); // Decrease total items by 1
     } else {
-      dispatch(removeItem(item.name)); // Pass the name for removal
+      dispatch(removeItem(item.name));
+      onCartItemChange(-item.quantity); // Adjust total items accordingly
     }
   };
 
   const handleRemove = (item) => {
-    dispatch(removeItem(item.name)); // Ensure we pass the item name
+    dispatch(removeItem(item.name));
+    onCartItemChange(-item.quantity); // Adjust total items accordingly
   };
 
-  // Calculate total cost based on quantity for an item
   const calculateTotalCost = (item) => {
-    const unitCost = parseFloat(item.cost.replace('$', '')); // Assuming cost is a string like "$15"
-    return (unitCost * item.quantity).toFixed(2); // Ensures the result is a string with two decimal places
+    const unitCost = parseFloat(item.cost.replace('$', ''));
+    return (unitCost * item.quantity).toFixed(2);
   };
 
   return (
     <div className="cart-container">
       <h2 style={{ color: 'black' }}>Total Cart Amount: ${calculateTotalAmount()}</h2>
       <div>
-        {cart.length > 0 ? ( // Check if cart has items
+        {cart.length > 0 ? (
           cart.map(item => (
             <div className="cart-item" key={item.name}>
               <img className="cart-item-image" src={item.image} alt={item.name} />
@@ -64,12 +61,12 @@ const CartItem = ({ onContinueShopping }) => {
             </div>
           ))
         ) : (
-          <div className="empty-cart-message">Your cart is empty.</div> // Message when the cart is empty
+          <div className="empty-cart-message">Your cart is empty.</div>
         )}
       </div>
-      <div style={{ marginTop: '20px', color: 'black' }} className='total_cart_amount'></div>
+      <br/>
       <div className="continue_shopping_btn">
-        <button className="get-started-button" onClick={(e) => handleContinueShopping(e)}>Continue Shopping</button>
+        <button className="get-started-button" onClick={onContinueShopping}>Continue Shopping</button>
         <br />
         <button className="get-started-button1" onClick={() => alert('Functionality to be added for future reference')}>Checkout</button>
       </div>
