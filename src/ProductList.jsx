@@ -6,7 +6,7 @@ import { useDispatch } from "react-redux";
 function ProductList() {
   const dispatch = useDispatch();
   const [showCart, setShowCart] = useState(false);
-  const [showPlants, setShowPlants] = useState(false); 
+  const [showPlants, setShowPlants] = useState(false);
   const [addedToCart, setAddedToCart] = useState({});
   const [totalItems, setTotalItems] = useState(0);
 
@@ -14,9 +14,9 @@ function ProductList() {
     dispatch(addItem(product));
     setAddedToCart((prevState) => ({
       ...prevState,
-      [product.name]: true, 
+      [product.name]: true,
     }));
-    setTotalItems((prev) => prev + 1); 
+    setTotalItems((prev) => prev + 1);
   };
   const handleCartItemChange = (change) => {
     setTotalItems((prev) => prev + change);
@@ -267,7 +267,7 @@ function ProductList() {
   const styleObj = {
     backgroundColor: "#4CAF50",
     color: "#fff!important",
-    padding: "15px",
+    padding: "20px",
     display: "flex",
     justifyContent: "space-between",
     alignIems: "center",
@@ -277,7 +277,7 @@ function ProductList() {
     display: "flex",
     justifyContent: "space-between",
     alignItems: "center",
-    width: "1100px",
+    width: "80%",
   };
   const styleA = {
     color: "black",
@@ -286,12 +286,12 @@ function ProductList() {
   };
   const handleCartClick = (e) => {
     e.preventDefault();
-    setShowCart(true); 
+    setShowCart(true);
   };
   const handlePlantsClick = (e) => {
     e.preventDefault();
-    setShowPlants(true); 
-    setShowCart(false); 
+    setShowPlants(true);
+    setShowCart(false);
   };
 
   const handleContinueShopping = (e) => {
@@ -312,8 +312,22 @@ function ProductList() {
             />
             <a href="/" style={{ textDecoration: "none", marginLeft: "16px" }}>
               <div>
-                <h3 style={{ color: "white" }}>Paradise Nursery</h3>
-                <i style={{ color: "white" }}>Where Green Meets Serenity</i>
+                <h3
+                  style={{
+                    color: "white",
+                    fontSize: "30px",
+                  }}
+                >
+                  Paradise Nursery
+                </h3>
+                <i
+                  style={{
+                    color: "white",
+                    fontSize: "18px",
+                  }}
+                >
+                  Where Green Meets Serenity
+                </i>
               </div>
             </a>
           </div>
@@ -321,11 +335,11 @@ function ProductList() {
         <div style={styleObjUl}>
           <div
             style={{
-              flex: 1, 
-              display: "flex", 
-              justifyContent: "center", 
-              alignItems: "center", 
-              padding: "10px", 
+              flex: 1,
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              padding: "10px",
             }}
           >
             <a
@@ -333,8 +347,9 @@ function ProductList() {
               onClick={(e) => handlePlantsClick(e)}
               style={{
                 fontSize: "30px",
-                color: "white", 
-                textDecoration: "none", 
+                color: "white",
+                textDecoration: "none",
+                marginRight: "30%",
               }}
             >
               Plants
@@ -345,7 +360,7 @@ function ProductList() {
             <a href="#" onClick={(e) => handleCartClick(e)} style={styleA}>
               <h1
                 className="cart flex items-center justify-center"
-                style={{ position: "relative" }}
+                style={{ position: "relative", display: "flex" }}
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
