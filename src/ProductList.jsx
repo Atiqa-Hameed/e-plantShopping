@@ -1,14 +1,29 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./ProductList.css";
 import CartItem from "./CartItem";
 import { addItem } from "./CartSlice";
 import { useDispatch } from "react-redux";
+
 function ProductList() {
   const dispatch = useDispatch();
   const [showCart, setShowCart] = useState(false);
   const [showPlants, setShowPlants] = useState(false);
   const [addedToCart, setAddedToCart] = useState({});
   const [totalItems, setTotalItems] = useState(0);
+
+  // Load the cart state from localStorage when the component initializes
+  useEffect(() => {
+    const storedCart = JSON.parse(localStorage.getItem("addedToCart")) || {};
+    const storedTotalItems = JSON.parse(localStorage.getItem("totalItems")) || 0;
+    setAddedToCart(storedCart);
+    setTotalItems(storedTotalItems);
+  }, []);
+
+  // Update localStorage whenever the cart changes
+  useEffect(() => {
+    localStorage.setItem("addedToCart", JSON.stringify(addedToCart));
+    localStorage.setItem("totalItems", JSON.stringify(totalItems));
+  }, [addedToCart, totalItems]);
 
   const handleAddToCart = (product) => {
     dispatch(addItem(product));
@@ -18,8 +33,16 @@ function ProductList() {
     }));
     setTotalItems((prev) => prev + 1);
   };
+
   const handleCartItemChange = (change) => {
-    setTotalItems((prev) => prev + change);
+    setTotalItems((prev) => {
+      const newTotal = prev + change;
+      if (newTotal === 0) {
+        // Clear the cart if totalItems goes to zero
+        setAddedToCart({});
+      }
+      return newTotal;
+    });
   };
 
   const plantsArray = [
@@ -298,6 +321,7 @@ function ProductList() {
     e.preventDefault();
     setShowCart(false);
   };
+
   return (
     <div>
       <div className="navbar" style={styleObj}>
